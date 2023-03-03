@@ -26,7 +26,7 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = [{title: 'Beginner', route: 'beg'},
+const navItems = [{title: 'Custom', route: 'create-curriculum'},
 // {title: 'Intermediate', route: 'inter'},
 {title: 'Add Exercise', route: 'add-exer'}, 
 {title: 'All Exercises', route: 'all-exer'}];
@@ -51,7 +51,7 @@ export default function Header(props: Props) {
                   textDecoration: 'none',
                   color: 'black',
                   fontSize: 20,
-                  padding:'10px 15px',
+                  padding:'5px 10px',
                 }}
               >
                 Acro Lesson Generator

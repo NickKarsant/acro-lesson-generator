@@ -7,6 +7,7 @@ export const warmups = [
       rows: 2,
       cols:2
     },
+    difficulty:'easy',
     details: "Skip with high knees"
   },
   {
@@ -50,14 +51,14 @@ export const warmups = [
     details: "Start on hands and toes opposite foot and hand come off the ground as foot and leg come forward"
   },
   {
-    name: 'Foot step',
+    name: 'Hitch kick',
     id: 18,
     img: {
       image:'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
       rows: 2,
       cols:2
     },
-    details: "Start on hands and toes opposite foot and hand come off the ground as foot and leg come forward"
+    details: "Skip with high knee and then kick or swing other leg"
   },
   {
     name: 'Kicks',
@@ -67,17 +68,8 @@ export const warmups = [
       rows: 2,
       cols:2
     },
-    details: "Forward, outward and outward fan kicks, side, and back"
-  },
-  {
-    name: 'Long Jump',
-    id: 20,
-    img: {
-      image:'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-      rows: 2,
-      cols:2
-    },
-    details: "Feet together, swing arms and bend knees, try to jump as far as you can and stick the landing with feet together"
+    difficulty:'hard',
+    details: "Forward, inward and outward fan kicks, side, and back"
   },
   {
     name: 'Needle Kicks',
@@ -90,7 +82,7 @@ export const warmups = [
     details: "Stand straight, both hands on the ground, swing and lift one leg up high  maintaining contact with the ground"
   },
   {
-    name: 'Hollow body and Arch rolls',
+    name: 'Hollow body rolls',
     id: 22,
     img: {
       image:'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',

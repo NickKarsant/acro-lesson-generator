@@ -9,6 +9,7 @@ export const animalWalks = [
     name: 'Inch worm',
     img: {image: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',rows:2, cols: 2 },
     id: 2,
+    difficulty:'hard',
     details: "Start in push up position, keep straight legs and walk your feet to your hands. Walk hands out to push up position"
   },
   {
@@ -33,6 +34,7 @@ export const animalWalks = [
     name: 'Frog Jumps',
     img: {image: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',rows:2, cols: 2 },
     id: 6,
+    difficulty:'hard',
     details: "Stand on toes and crouch down, feet together, knees apart, jump up and make your body and long as possible, land back in starting position"
   },
   {
@@ -69,6 +71,17 @@ export const animalWalks = [
     name: 'SpiderMan',
     img: {image: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',rows:2, cols: 2 },
     id: 12,
+    difficulty:'hard',
     details: "Low X plank, move across the floor"
+  },
+  {
+    name: 'Kangaroo Jump',
+    id: 13,
+    img: {
+      image:'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
+      rows: 2,
+      cols:2
+    },
+    details: "Feet together, swing arms and bend knees, try to jump as far as you can and stick the landing with feet together"
   },
 ]

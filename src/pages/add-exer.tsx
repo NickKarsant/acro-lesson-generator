@@ -17,7 +17,21 @@ export default function BeginnerCurriculum() {
   return (
     <Container  fixed sx={{border: '1px solid green'}}>
 
-    beginner page
+    add exercise page 
+
+      always show form at top of page 
+      
+    <Box sx={{my: 2}}>
+        <Grid container item>
+          <Typography variant='h4'>
+            Custom Exercises
+          </Typography>
+        </Grid>
+
+      </Box>   
+
+      form to add new exercise to users account
+      mix into managed database when selecting or creating randomized curric.
 
 
     </Container>

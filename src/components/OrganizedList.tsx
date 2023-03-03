@@ -3,9 +3,11 @@ import {ImageList,
 ImageListItem,
 ImageListItemBar,
 ListSubheader,
+Stack, 
 IconButton} from '@mui/material';
-import { Exercise } from "../components/Exercise";
+import { Exercise, ExerciseChip } from "../components/Exercise";
 import {FaCaretDown, FaCaretUp} from 'react-icons/fa'
+import { useTheme } from '@emotion/react';
 
 function srcset(image: string, size: number, rows = 1, cols = 1) {
   return {
@@ -18,18 +20,23 @@ function srcset(image: string, size: number, rows = 1, cols = 1) {
 
 export const OrganizedList = ({exercises}) => {
   const [showDetails, setShowDetails] = useState(false)
+  const theme = useTheme();
+
   return (
+    <>
 <ImageList
       variant="quilted"
       // cols need breakpoint for consistent UI
       cols={2}
       gap={4}
       rowHeight={150}
-    >      {exercises?.map((exercise) => (
+      >      {exercises?.map((exercise) => (
         <ImageListItem  key={exercise.name}>
           <Exercise exer={exercise} />
         </ImageListItem>
       ))}
     </ImageList>
+
+      </>
   );
 }

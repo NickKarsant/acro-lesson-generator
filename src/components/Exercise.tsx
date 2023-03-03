@@ -1,7 +1,8 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import React, {useState} from 'react';
+import { styled, withStyles } from '@mui/material/styles';
 import {Card, CardHeader,
   CardMedia,
+  Chip,
   CardContent,
   CardActions,
   Collapse,
@@ -10,6 +11,10 @@ import {Card, CardHeader,
   Avatar,} from '@mui/material';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import {FaCaretDown, FaCaretUp} from 'react-icons/fa'
+import { useTheme } from '@emotion/react';
+import { makeStyles } from '@mui/material/styles';
+import TestChip from '../components/test'
+
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -38,7 +43,7 @@ export const Exercise = (exer) =>{
   const styles = {
     media: {
       height: 100,
-      paddingTop: '0%', // 16:9,
+      paddingTop: '0%',
     }
 };
 
@@ -82,7 +87,7 @@ export const Exercise = (exer) =>{
       <CardActions onClick={handleExpandClick} sx={{display:'flex', 
       height:'50px', 
       justifyContent:'space-between'}}>
-        <Typography sx={{flexWrap:'wrap', p:0, m:0}} variant='body1'>
+        <Typography sx={{flexWrap:'wrap', p:0, m:0}} variant='subtitle1'>
         {exercise?.name}
         </Typography>
         <ExpandMore
@@ -98,4 +103,24 @@ export const Exercise = (exer) =>{
     )}
     </Card>
   );
+}
+
+
+export const ExerciseChip = (exer, ) =>{
+  const  exercise = exer.exer;   
+  const {palette} = useTheme();
+  const [clicked, setClicked] = useState(false)
+  const theme = useTheme()
+
+  const handleClick = () => {
+    setClicked(!clicked)
+  };
+
+  const classes = `tokenChip${clicked ? 'Selected' : ''}`
+
+return (<>
+  <Chip className={`tokenChip${clicked ? 'Selected' : ''}`} sx={{ m:0.5}}
+  label={exercise.name}  onClick={handleClick}  />
+  </>
+)
 }
