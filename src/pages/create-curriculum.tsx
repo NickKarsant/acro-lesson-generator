@@ -7,9 +7,6 @@ Box,
 Grid,
 Typography,
 Stack, 
-Item,
-GridList,
-GridListTile,
 IconButton} from '@mui/material';
 import {useRouter} from 'next/router'
 import { ExerciseChip } from "../components/Exercise";

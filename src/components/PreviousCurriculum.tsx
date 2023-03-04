@@ -8,7 +8,7 @@ export const PreviousCurriculum= ({curr, random, custom}: Props) => {
 
 
   return (
-    <Card  sx={{maxWidth: 600 }}>
+    <Card>
         <CardContent sx={{p:1}}>
           <Grid container sx={{pb:0.4, mt:-0.2}} display="flex" justifyContent="space-between">
             <Grid item>
@@ -21,10 +21,14 @@ export const PreviousCurriculum= ({curr, random, custom}: Props) => {
 
         <Grid container sx={{border: `2px solid red`}}>
           <Grid container item display='flex' justifyContent='space-between' spacing={-1}>
-            <List>
+            <List >
               {/* ANIMALS */}
             <ListItem key={'animalWalks'} sx={{ p:0, m:0}}>
-                  <ListItemText sx={{p:0, m:0}} primary={'Animals'} />
+                  <ListItemText sx={{p:0, m:0}} primary={
+                    <Typography sx={{fontWeight:'bold', textDecoration: 'underline'}}>
+                      Animals 
+                    </Typography>
+                  }/>
                 </ListItem>
               
               {curr.animalWalks.map((animal) => {
@@ -44,7 +48,11 @@ export const PreviousCurriculum= ({curr, random, custom}: Props) => {
             {/* WarmUPS */}
               <List>
             <ListItem key={'warmups'} sx={{ p:0, m:0}}>
-                  <ListItemText sx={{p:0, m:0}} primary={'Warm Ups'} />
+                  <ListItemText sx={{p:0, m:0}} primary={
+                    <Typography sx={{fontWeight:'bold', textDecoration: 'underline'}}>
+                      Warm ups 
+                    </Typography>
+                  }/> 
                 </ListItem>
               
               {curr.warmups.map((warmup) => {
@@ -63,7 +71,11 @@ export const PreviousCurriculum= ({curr, random, custom}: Props) => {
 
               <List>
             <ListItem key={'mains'} sx={{ p:0, m:0}}>
-                  <ListItemText sx={{p:0, m:0}} primary={'Main'} />
+                  <ListItemText sx={{p:0, m:0}} primary={
+                    <Typography sx={{fontWeight:'bold', textDecoration: 'underline'}}>
+                      Main 
+                    </Typography>
+                  }/>
                 </ListItem>
               
               {curr.mains.map((main) => {
@@ -81,7 +93,11 @@ export const PreviousCurriculum= ({curr, random, custom}: Props) => {
 
               <List>
             <ListItem key={'conditioning'} sx={{ p:0, m:0}}>
-                  <ListItemText sx={{p:0, m:0}} primary={'Condition'} />
+                  <ListItemText sx={{p:0, m:0}} primary={
+                    <Typography sx={{fontWeight:'bold', textDecoration: 'underline'}}>
+                      Condition 
+                    </Typography>
+                  }/>
                 </ListItem>
               
               {curr.conditioning.map((con) => {

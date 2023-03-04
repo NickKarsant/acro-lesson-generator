@@ -23,15 +23,15 @@ export default function Home() {
   }
 
   const saveRandomToLocalStorage = () =>{ 
-    localStorage.setItem(localStorage.length, JSON.stringify(randomized));
-    setSavedCurriculum(JSON.parse(localStorage.getItem(localStorage.length)));
+    localStorage.setItem(`random${localStorage.length}`, JSON.stringify(randomized));
+    setSavedCurriculum(JSON.parse(localStorage.getItem(`random${localStorage.length -1}`)))
     setRandomized({})
   }
 
   useEffect(() => {
     let previous = []
-    for(let i=0; i < 9; i++){
-      previous.push(JSON.parse(localStorage.getItem(i)))
+    for(let i=0; i < 10; i++){
+      previous.push(JSON.parse(localStorage.getItem(`random${i -1 }`)))
     }
     setPreviousCurrs(previous)
     
@@ -109,7 +109,7 @@ export default function Home() {
         previousCurrs.map((curr, idx) => {
           if (curr !== null){
             return (
-              <Grid item sx={{p:0, border:'2px solid orange'}} key={idx}>
+              <Grid item justifyContent='center' display='flex' sx={{p:0, border:'2px solid orange'}} key={idx}>
                 <PreviousCurriculum  curr={curr} />
               </Grid>
             )
