@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid,
   TextField,
   FormControlLabel,
@@ -14,6 +14,7 @@ import { Grid,
   InputLabel,
   TextareaAutosize} from '@mui/material'
   import {FaChevronDown, FaTimes} from 'react-icons/fa'
+  import {Exercise} from './Exercise'
 
 
 const defaultValues = {
@@ -25,37 +26,14 @@ const defaultValues = {
 
 const Form = () => {
   const [formValues, setFormValues] = useState(defaultValues);
-  const [category, setCategory] = useState('');
-  const [difficulty, setDifficulty] = useState('');
+  const [customExercise, setCustomExercise] = useState([]);
 
-  
-  const handleCategoryChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      category: value,
-    });
-  };
-  const handleDifficultyChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      difficulty: value,
-    });
-  };
 
-  const handleNameChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = (e) => {
+    const {  name, value } = e.target;
     setFormValues({
       ...formValues,
-      name: value,
-    });
-  };
-  const handleDetailsChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      details: value,
+      [name]: value,
     });
   };
 
@@ -63,9 +41,24 @@ const Form = () => {
     event.preventDefault();
     setFormValues(defaultValues)
     // add default image to formValues
-    // save to localSotrage 
-    console.log(formValues);
+
+    localStorage.setItem(`custom${localStorage.length}`, JSON.stringify(formValues));
+    setCustomExercise(JSON.parse(localStorage.getItem(`custom${localStorage.length -1}`)))
+    setFormValues(defaultValues)
   };
+
+
+  useEffect(() => {
+    let custom = []
+    for(let i=0; i < 5; i++){
+      custom.push(JSON.parse(localStorage.getItem(`custom${i -1 }`)))
+    }
+    setCustomExercise(custom)
+    
+  }, [formValues])
+
+
+  const customs = customExercise.filter((exer) => exer !== null).map((exer) => <Exercise key={exer.name} exer={exer} />)
 
 
   return (
@@ -74,7 +67,7 @@ const Form = () => {
 
         <Grid container direction='row' alignItems='center' justifyContent="space-around"  item>
           <Grid item>
-          <Box sx={{ minWidth: 160 }}>
+          <Box sx={{ minWidth: 170 }}>
               <FormControl fullWidth>
               <InputLabel id="category">Category</InputLabel>
                 <Select
@@ -83,7 +76,7 @@ const Form = () => {
                     name='category'
                     value={formValues.category}
                     label="category"
-                    onChange={handleCategoryChange}
+                    onChange={handleInputChange}
                     >
                     <MenuItem value={'Warm Up'}>Warm Up</MenuItem>
                     <MenuItem value={'Main'}>Main Exercise</MenuItem>
@@ -100,7 +93,7 @@ const Form = () => {
               label="Name"
               type="text"
               value={formValues.name}
-              onChange={handleNameChange}
+              onChange={handleInputChange}
             />
           </Grid>
         </Grid>
@@ -114,24 +107,25 @@ const Form = () => {
               name='details'
               minRows={5}
               value={formValues.details}
-              onChange={handleDetailsChange}
+              onChange={handleInputChange}
             />
           </Grid>
-          <Box sx={{ minWidth: 160 }}>
+          <Box sx={{ minWidth: 190 }}>
               <FormControl fullWidth>
               <InputLabel  id="difficulty">Difficulty</InputLabel>
                 <Select
                     labelId="difficulty"
                     id="difficulty"
+                    name='difficulty'
                     value={formValues.difficulty}
-                    label="Difficulty"
-                    endAdornment={formValues.difficulty ? <FaTimes onClick={() => setFormValues({
-                      ...formValues,
-                      difficulty: '',
-                    })}/> : <FaChevronDown />}
-                    onChange={handleDifficultyChange}
+                    label="difficulty"
+                    // endAdornment={formValues.difficulty ? ( <FaTimes onClick={() => setFormValues({
+                    //   ...formValues,
+                    //   difficulty: '',
+                    // })}/> ) : <FaChevronDown />}
+                    onChange={handleInputChange}
                     >
-                    <MenuItem value={'warmup'} >Hard</MenuItem>
+                    <MenuItem value={'hard'} >Hard</MenuItem>
                   </Select>
               </FormControl>
             </Box>
@@ -142,6 +136,9 @@ const Form = () => {
           </Button>
         </Grid>
       </Grid>
+      <Box sx={{}}>
+      {customExercise.filter((exer) => exer !== null).map((exer) => <Exercise key={exer.name} exer={exer} />)}
+      </Box>
     </form>
   );
 };

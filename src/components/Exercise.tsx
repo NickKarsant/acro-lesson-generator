@@ -57,7 +57,7 @@ export const Exercise = (exer) =>{
     <CardMedia
       onClick={handleExpandClick}
       component="img"
-      image={exercise.img.image}
+      image={exercise?.img?.image}
       alt=""
       style={styles.media}
       />

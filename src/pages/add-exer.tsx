@@ -13,7 +13,7 @@ import Form from '../components/Form'
 
 
 
-export default function BeginnerCurriculum() {
+export default function CustomExercise() {
   const {push} = useRouter()
   
   return (
