@@ -116,6 +116,7 @@ export const ExerciseChip = (exer, ) =>{
     setClicked(!clicked)
   };
 
+
   const classes = `tokenChip${clicked ? 'Selected' : ''}`
 
 return (<>

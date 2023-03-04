@@ -24,7 +24,7 @@ export const mains = [
     details: "Feet together, arms up, hop and don't let your heels touch the ground"
   },
   {
-    name: 'Handstand kick ups',
+    name: 'Handstand',
     img: {image: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',rows:2, cols: 2 },
     id: 406,
     details: "Feet together, arms up, hop and don't let your heels touch the ground"
@@ -81,7 +81,7 @@ export const mains = [
     details: "Straight, tuck, straddle and pike jumps. Flips. Vault"
   },
   {
-    name: 'Backward roll extension',
+    name: 'Backward roll ext',
     img: {image: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',rows:2, cols: 2 },
     id: 413,    
     difficulty:'hard',

@@ -25,15 +25,6 @@ import {mains} from '../data/mains'
 
 export default function CreateCurriculum() {
   const {push} = useRouter()
-
-  // const chips = warmups?.map((warmup) => (
-  //   <ExerciseChip exer={warmup} />
-  //   // <GridListTile key={warmups.name} >
-  //   // </GridListTile>
-  // ))
-
-  // const stack = (>)
-
   
   return (
     <Container  fixed sx={{border: '1px solid blue'}}>

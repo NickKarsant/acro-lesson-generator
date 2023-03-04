@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Header from '../components/Header'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
@@ -7,25 +7,42 @@ import {OrganizedList} from '../components/OrganizedList'
 import { Inter } from '@next/font/google'
 import {randomizedCurriculum} from '../data/dataRetrieval'
 import { useTheme } from '@emotion/react';
+import { PreviousCurriculum } from '@/components/PreviousCurriculum';
 
 
 
 export default function Home() {
   const {push} = useRouter()
   const [randomized, setRandomized] = useState({})
+  const [savedCurriculum, setSavedCurriculum] = useState([])
+  const [previousCurrs, setPreviousCurrs] = useState([])
+  
 
   const randomCurriculum = () =>{
     setRandomized(randomizedCurriculum)
   }
 
-  const saveRandomToLocalStorage = () =>{ localStorage.setItem('randomCurriculum', JSON.stringify(randomized));
+  const saveRandomToLocalStorage = () =>{ 
+    localStorage.setItem(localStorage.length, JSON.stringify(randomized));
+    setSavedCurriculum(JSON.parse(localStorage.getItem(localStorage.length)));
+    setRandomized({})
   }
+
+  useEffect(() => {
+    let previous = []
+    for(let i=0; i < 9; i++){
+      previous.push(JSON.parse(localStorage.getItem(i)))
+    }
+    setPreviousCurrs(previous)
+    
+  }, [randomized])
+
+
+  
 
   return (
     <Container>
-      <Box    
-        sx={{my: 2}}>
-        <Grid container item display="flex" 
+        <Grid sx={{my:2}} container item display="flex" 
         alignItems="center"
         justifyContent="center" >
           <Typography variant='h4'>
@@ -45,44 +62,28 @@ export default function Home() {
             </Button>
         </Stack>
 
-        {/* <Grid container item display="flex" 
-        alignItems="center"
-        justifyContent="space-around"spacing={2} >
-          <Grid item>
-            <Button variant="contained" sx={{backgroundColor: 'teal'}} size="medium" onClick={() => push('./create-curriculum')}>
-              Create Custom Lesson
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button onClick={randomCurriculum} variant="contained" sx={{backgroundColor: 'red'}} size="medium">
-              Create Randomized Lesson
-            </Button>
-          </Grid>
-        </Grid> */}
-      </Box>
-
       {randomized.animalWalks && (
         <>
       <Box sx={{my: 2, p:'10px',borderRadius:'10px',   boxShadow: 'inset 0px 5px 10px 5px red'}}>
-        <Grid container item>
+        <Grid sx={{mt:2}} container item>
           <Typography variant='h4'>
             Animal Walks
           </Typography>
         </Grid>
         <OrganizedList exercises={randomized.animalWalks} />
-        <Grid container item>
+        <Grid sx={{mt:2}} container item>
           <Typography variant='h4'>
-           Warm Ups
+            Warm Ups
           </Typography>
         </Grid>
         <OrganizedList exercises={randomized.warmups} />
-        <Grid container item>
+        <Grid sx={{mt:2}} container item>
           <Typography variant='h4'>
             Main Exercsies
           </Typography>
         </Grid>
         <OrganizedList exercises={randomized.mains} />
-        <Grid container item>
+        <Grid sx={{mt:2}} container item>
           <Typography variant='h4'>
             Conditioning
           </Typography>
@@ -94,26 +95,28 @@ export default function Home() {
       alignItems="center"
       justifyContent="space-around"spacing={2} >
         <Grid item>
-          <Button variant="contained" sx={{backgroundColor: 'teal'}} size="medium" onClick={saveRandomToLocalStorage}>
-            Save Current Lesson
+          <Button variant="contained" sx={{backgroundColor: 'red'}} size="medium" onClick={saveRandomToLocalStorage}>
+            Save Randomized Lesson
           </Button>
         </Grid>
       </Grid>
-
         </>
       )}
-      
 
+    <Grid container direction="column" sx={{my:2}} justifyContent='center' display='flex' spacing={2}>
 
- <div>
-  if no Previous curriculums saved, provide button to create a selected one or generate a random one
- </div>
- <div>
- otherwise
- </div>
- <div>
-  Show last 5 or 10 created curriculums
- </div>
+      {previousCurrs.length && (
+        previousCurrs.map((curr, idx) => {
+          if (curr !== null){
+            return (
+              <Grid item sx={{p:0, border:'2px solid orange'}} key={idx}>
+                <PreviousCurriculum  curr={curr} />
+              </Grid>
+            )
+          }
+        })
+        )}
+    </Grid>
     </Container>
     
   )
