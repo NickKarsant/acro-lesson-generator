@@ -22,6 +22,7 @@ export const OrganizedList = ({exercises}) => {
   const [showDetails, setShowDetails] = useState(false)
   const theme = useTheme();
 
+
   return (
     <>
 <ImageList

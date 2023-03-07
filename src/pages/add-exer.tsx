@@ -17,7 +17,7 @@ export default function CustomExercise() {
   const {push} = useRouter()
   
   return (
-    <Container  fixed sx={{border: '1px solid green'}}>
+    <Container fixed >
       
     <Grid container display='flex' justifyContent='center'>
       <Typography variant='h4'>
@@ -25,7 +25,7 @@ export default function CustomExercise() {
       </Typography>
     </Grid>
 
-<Form />
+    <Form />
 
 
     </Container>

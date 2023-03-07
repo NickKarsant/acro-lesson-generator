@@ -64,7 +64,7 @@ export default function Home() {
 
       {randomized.animalWalks && (
         <>
-      <Box sx={{my: 2, p:'10px',borderRadius:'10px',   boxShadow: 'inset 0px 5px 10px 5px red'}}>
+      <Box sx={{my: 2, p:'10px', borderRadius:'10px', boxShadow: 'inset 0px 5px 10px 5px red'}}>
         <Grid sx={{mt:2}} container item>
           <Typography variant='h4'>
             Animal Walks
@@ -103,13 +103,13 @@ export default function Home() {
         </>
       )}
 
-    <Grid container direction="column" sx={{my:2}} justifyContent='center' display='flex' spacing={2}>
+    <Grid container direction="column" sx={{my:2}} justifyContent='center' display='flex' spacing={1}>
 
       {previousCurrs.length && (
         previousCurrs.map((curr, idx) => {
           if (curr !== null){
             return (
-              <Grid item justifyContent='center' display='flex' sx={{p:0, border:'2px solid orange'}} key={idx}>
+              <Grid item key={idx}>
                 <PreviousCurriculum  curr={curr} />
               </Grid>
             )

@@ -15,6 +15,8 @@ import { Grid,
   TextareaAutosize} from '@mui/material'
   import {FaChevronDown, FaTimes} from 'react-icons/fa'
   import {Exercise} from './Exercise'
+  import {OrganizedList} from '../components/OrganizedList'
+  import acroDefault from '../../public/defaultImages/acroDefault.jpeg'
 
 
 const defaultValues = {
@@ -26,7 +28,7 @@ const defaultValues = {
 
 const Form = () => {
   const [formValues, setFormValues] = useState(defaultValues);
-  const [customExercise, setCustomExercise] = useState([]);
+  const [customExercises, setCustomExercises] = useState([{name:'what'}, {name:'the'}, {name:'fuck'}]);
 
 
   const handleInputChange = (e) => {
@@ -37,28 +39,27 @@ const Form = () => {
     });
   };
 
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    setFormValues(defaultValues)
+    // setFormValues(defaultValues)
     // add default image to formValues
 
+    formValues['img'] = acroDefault
     localStorage.setItem(`custom${localStorage.length}`, JSON.stringify(formValues));
-    setCustomExercise(JSON.parse(localStorage.getItem(`custom${localStorage.length -1}`)))
-    setFormValues(defaultValues)
+
+    console.log(JSON.parse(localStorage.getItem(`custom${localStorage.length - 1}`)))
+
+    let custom = []
+    for(let i=0; i < 20; i++){
+      custom.push(JSON.parse(localStorage.getItem(`custom${i -1}`)))
+    }
+
+    setCustomExercises(custom)
+    console.log('custom', customExercises)
   };
 
-
-  useEffect(() => {
-    let custom = []
-    for(let i=0; i < 5; i++){
-      custom.push(JSON.parse(localStorage.getItem(`custom${i -1 }`)))
-    }
-    setCustomExercise(custom)
-    
-  }, [formValues])
-
-
-  const customs = customExercise.filter((exer) => exer !== null).map((exer) => <Exercise key={exer.name} exer={exer} />)
+  const customs = customExercises.filter((exer) => exer !== null)
 
 
   return (
@@ -67,8 +68,7 @@ const Form = () => {
 
         <Grid container direction='row' alignItems='center' justifyContent="space-around"  item>
           <Grid item>
-          <Box sx={{ minWidth: 170 }}>
-              <FormControl fullWidth>
+              <FormControl  sx={{ minWidth: 170 }} fullWidth>
               <InputLabel id="category">Category</InputLabel>
                 <Select
                     labelId="category"
@@ -83,7 +83,6 @@ const Form = () => {
                     <MenuItem value={'Conditioning'}>Conditioning</MenuItem>
                   </Select>
               </FormControl>
-            </Box>
             </Grid>
 
           <Grid item>
@@ -137,7 +136,8 @@ const Form = () => {
         </Grid>
       </Grid>
       <Box sx={{}}>
-      {customExercise.filter((exer) => exer !== null).map((exer) => <Exercise key={exer.name} exer={exer} />)}
+        <OrganizedList exercises={customs}/>
+      
       </Box>
     </form>
   );

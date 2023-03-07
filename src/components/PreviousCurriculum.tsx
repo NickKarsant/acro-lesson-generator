@@ -8,7 +8,7 @@ export const PreviousCurriculum= ({curr, random, custom}: Props) => {
 
 
   return (
-    <Card>
+    <Card sx={{backgroundColor:'white', maxWidth: '800px'}}>
         <CardContent sx={{p:1}}>
           <Grid container sx={{pb:0.4, mt:-0.2}} display="flex" justifyContent="space-between">
             <Grid item>
