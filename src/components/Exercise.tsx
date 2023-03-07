@@ -13,8 +13,6 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import {FaCaretDown, FaCaretUp} from 'react-icons/fa'
 import { useTheme } from '@emotion/react';
 import { makeStyles } from '@mui/material/styles';
-import TestChip from '../components/test'
-
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -44,20 +42,18 @@ export const Exercise = (exer) =>{
     media: {
       height: 100,
       paddingTop: '0%',
+      objectFit: "fill"
     }
 };
-
-
 
   return (
     <Card sx={{ maxWidth: 345 }}>
       {!expanded ? (
     <>
-    {/* <img src={`${exercise.img.image}`}/> */}
     <CardMedia
       onClick={handleExpandClick}
       component="img"
-      image={exercise?.img?.image}
+      image={exercise?.img?.src}
       alt=""
       style={styles.media}
       />

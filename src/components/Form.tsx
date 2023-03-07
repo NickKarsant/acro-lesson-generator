@@ -28,7 +28,8 @@ const defaultValues = {
 
 const Form = () => {
   const [formValues, setFormValues] = useState(defaultValues);
-  const [customExercises, setCustomExercises] = useState([{name:'what'}, {name:'the'}, {name:'fuck'}]);
+  const [customExercises, setCustomExercises] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
 
 
   const handleInputChange = (e) => {
@@ -42,24 +43,22 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // setFormValues(defaultValues)
-    // add default image to formValues
-
     formValues['img'] = acroDefault
     localStorage.setItem(`custom${localStorage.length}`, JSON.stringify(formValues));
+    setFormValues(defaultValues)
+    setSubmitted(true)
+  };
 
-    console.log(JSON.parse(localStorage.getItem(`custom${localStorage.length - 1}`)))
 
+  useEffect(() => {
     let custom = []
     for(let i=0; i < 20; i++){
       custom.push(JSON.parse(localStorage.getItem(`custom${i -1}`)))
     }
+    setCustomExercises(custom.filter((exer) => exer !== null))
+  }, [submitted])
+  
 
-    setCustomExercises(custom)
-    console.log('custom', customExercises)
-  };
-
-  const customs = customExercises.filter((exer) => exer !== null)
 
 
   return (
@@ -136,7 +135,7 @@ const Form = () => {
         </Grid>
       </Grid>
       <Box sx={{}}>
-        <OrganizedList exercises={customs}/>
+        <OrganizedList exercises={customExercises}/>
       
       </Box>
     </form>
